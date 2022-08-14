@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetPlanner_WPF"
         xmlns:Views="clr-namespace:BudgetPlanner_WPF.Views"
-        xmlns:ViewModels="clr-namespace:BudgetPlanner_WPF.ViewModels" 
+        xmlns:ViewModels="clr-namespace:BudgetPlanner_WPF.ViewModels"
+        d:DataContext="{d:DesignInstance Type=ViewModels:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto">

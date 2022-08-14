@@ -18,6 +18,11 @@ namespace BudgetPlanner_WPF
         protected override void OnStartup(StartupEventArgs e)
         {
 
+            using (OperationDbContext db = new OperationDbContext())
+            {
+
+            }
+
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel()
