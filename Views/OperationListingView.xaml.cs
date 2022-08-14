@@ -23,6 +23,7 @@ namespace BudgetPlanner_WPF.Views
         public OperationListingView()
         {
             InitializeComponent();
+
         }
     }
 }

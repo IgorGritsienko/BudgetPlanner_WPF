@@ -1,14 +1,20 @@
-﻿using System;
+﻿using BudgetPlanner_WPF.Commands;
+using BudgetPlanner_WPF.Models;
+using Microsoft.Expression.Interactivity.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BudgetPlanner_WPF.ViewModels
 {
     internal class MainViewModel : BaseViewModel
     {
-        private BaseViewModel _viewModel;
+        public BaseViewModel _viewModel;
+        private Planner _planner;
+
         public BaseViewModel ViewModel
         {
             get
@@ -22,9 +28,26 @@ namespace BudgetPlanner_WPF.ViewModels
             }
         }
 
-        public MainViewModel()
+        public ICommand DisplayAddOperationView
         {
-            _viewModel = new OperationListingViewModel();
+            get
+            {
+                return new RelayCommand(action => ViewModel = new AddOperationViewModel(_planner));
+            }
+        }
+
+        public ICommand DisplayOperationListingView
+        {
+            get
+            {
+                return new RelayCommand(action => ViewModel = new OperationListingViewModel(_planner));
+            }
+        }
+
+        public MainViewModel(Planner planner)
+        {
+            _planner = planner;
+            _viewModel = new OperationListingViewModel(_planner);
         }
     }
 }

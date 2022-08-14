@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BudgetPlanner_WPF.Views"
+             xmlns:local="clr-namespace:BudgetPlanner_WPF" xmlns:viewmodels="clr-namespace:BudgetPlanner_WPF.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddOperationViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -31,7 +31,8 @@
             <ComboBox
                 Grid.Row="1"
                 Margin="0 5 0 0"
-                ItemsSource="{Binding Е, UpdateSourceTrigger=PropertyChanged}" />
+                SelectedItem="{Binding SelectedItem, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding OpTypesList, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="2">
@@ -44,7 +45,7 @@
                        Text="Сумма операции" />
             <TextBox Grid.Row="1"
                        Margin="0 5 0 0" 
-                       Text="{Binding Е, UpdateSourceTrigger=PropertyChanged}" />
+                       Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="3">
@@ -59,7 +60,8 @@
             <ComboBox Grid.Row="1"
                        Grid.Column="0"
                        Margin="0 5 0 0" 
-                       ItemsSource="{Binding Е, UpdateSourceTrigger=PropertyChanged}" />
+                       SelectedItem="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged}"
+                       ItemsSource="{Binding CategoryList, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid Grid.Row="4">
@@ -69,17 +71,19 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0"
-                       Text="Сумма операции" />
+                       Text="Комментарий" />
             <TextBox Grid.Row="1"
                        Margin="0 5 0 0" 
-                       Text="{Binding Е, UpdateSourceTrigger=PropertyChanged}" />
+                       Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <StackPanel Grid.Row="5"
                     Margin="0 25 0 0"
                     Orientation="Horizontal">
-            <Button Content="Подтвердить" Command="{Binding SubmitCommand}" />
-            <Button Margin="10 0 0 0" Content="Отменить"/>
+            <Button Content="Подтвердить" Command="{Binding AddCommand}" />
+            <Button Margin="10 0 0 0" Content="Отменить"
+                    Command="{Binding DataContext.DisplayOperationListingView, 
+                    RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}, Mode=OneWay}"/>
         </StackPanel>
 
     </Grid>

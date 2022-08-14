@@ -1,7 +1,9 @@
 ﻿<Application x:Class="BudgetPlanner_WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BudgetPlanner_WPF">
+             xmlns:local="clr-namespace:BudgetPlanner_WPF" 
+             xmlns:Views="clr-namespace:BudgetPlanner_WPF.Views"
+             >
     <Application.Resources>
         <Style TargetType="Button">
             <Setter Property="Padding" Value="10 5" />

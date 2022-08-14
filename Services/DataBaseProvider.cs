@@ -12,16 +12,9 @@ namespace BudgetPlanner_WPF.Services
 {
     public class DataBaseProvider : IDataBaseProvider
     {
-        private readonly OperationDbContext _operationDbContext;
-
-        public DataBaseProvider(OperationDbContext operationDbContext)
-        {
-            _operationDbContext = operationDbContext;
-        }
-
         public void AddRecord(Operation operation)
         {
-            using (var context = _operationDbContext)
+            using (var context = new OperationDbContext())
             {
                 OperationDTO operationDTO = ToOperationDTO(operation);
                 context.Operations.Add(operationDTO);
@@ -54,7 +47,7 @@ namespace BudgetPlanner_WPF.Services
        
         public IEnumerable<Operation> GetRecords()
         {
-            using (var context = _operationDbContext)
+            using (var context = new OperationDbContext())
             {
                 IEnumerable<OperationDTO> operationDTOs = context.Operations.ToList();
 

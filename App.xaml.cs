@@ -1,4 +1,6 @@
 ﻿using BudgetPlanner_WPF.DbContexts;
+using BudgetPlanner_WPF.Models;
+using BudgetPlanner_WPF.Services;
 using BudgetPlanner_WPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -15,8 +17,17 @@ namespace BudgetPlanner_WPF
     /// </summary>
     public partial class App : Application
     {
+
+        private readonly Planner _planner;
+        App()
+        {
+            IDataBaseProvider dataBaseProvider = new DataBaseProvider();
+            _planner = new Planner(dataBaseProvider);
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
+
 
             using (OperationDbContext db = new OperationDbContext())
             {
@@ -25,7 +36,7 @@ namespace BudgetPlanner_WPF
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(_planner)
             };
 
             MainWindow.Show();

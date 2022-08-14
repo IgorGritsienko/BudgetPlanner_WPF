@@ -17,19 +17,5 @@ namespace BudgetPlanner_WPF.DTOs
         public int Sum { get; set; }
         public string Category { get; set; }
         public string? Comment { get; set; }
-
-        //public string OperationType => _operationViewModel.OperationType;
-        //public int Sum => _operationViewModel.Sum;
-        //public string Category => _operationViewModel.Category;
-        //public string? Comment => _operationViewModel.Comment;
-
-        //public OperationDTO(OperationViewModel operationViewModel)
-        //{
-        //    _operationViewModel = operationViewModel;
-        //}
-        //public OperationDTO(string operationType, int sum, string category, string comment)
-        //{
-        //    _operationViewModel = new OperationViewModel(operationType, sum, category, comment);
-        //}
     }
 }

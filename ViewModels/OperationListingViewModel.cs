@@ -1,4 +1,5 @@
-﻿using BudgetPlanner_WPF.Models;
+﻿using BudgetPlanner_WPF.Commands;
+using BudgetPlanner_WPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,23 +14,15 @@ namespace BudgetPlanner_WPF.ViewModels
 {
     public class OperationListingViewModel : BaseViewModel
     {
-        //BugdetPlan _bugdetPlanner;
+        private Planner _planner;
 
         private readonly ObservableCollection<OperationViewModel> _operations;
         public IEnumerable<OperationViewModel> Operations => _operations;
 
-
-        private readonly List<string> opTypesToString;
-        public List<string> OpTypesToString => opTypesToString;
-
-        public ICommand AddReservationCommand { get; }
-
-        public OperationListingViewModel()
+        public OperationListingViewModel(Planner planner)
         {
-            //_bugdetPlanner = budgetPlan;
+            _planner = planner;
             _operations = new ObservableCollection<OperationViewModel>();
-            opTypesToString = new List<string>();
-
 
             GetRecords();
         }
@@ -40,22 +33,37 @@ namespace BudgetPlanner_WPF.ViewModels
 
             try
             {
-                foreach (OperationTypes opType in Enum.GetValues(typeof(OperationTypes)))
+                foreach (Operation opType in _planner.GetRecords())
                 {
-                    opTypesToString.Add(opType.ToString());
+                    _operations.Add(ToOperationVM(opType));
                 }
-
-                //foreach (Operation operation in _bugdetPlanner.GetRecords())
-                //{
-                //    OperationViewModel operationViewModel = new OperationViewModel(operation);
-                //    _operations.Add(operationViewModel);
-                //}
             }
             catch (InvalidCastException)
             {
                 MessageBox.Show("Bad data in database.", "Error!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private static OperationViewModel ToOperationVM(Operation operation)
+        {
+            string operType = DisplayName.GetDisplayName(operation.OperationType);
+            string categ;
+            if (operType == "Income")
+            {            
+                   categ = DisplayName.GetDisplayName(operation.IncomeCategory);
+            }
+            else
+            {
+                categ = DisplayName.GetDisplayName(operation.ExpenseCategory);
+            }
+            return new OperationViewModel()
+            {
+                OperationType = operType,
+                Sum = operation.Sum,
+                Category = categ,
+                Comment = operation.Comment,
+            };
         }
     }
 }

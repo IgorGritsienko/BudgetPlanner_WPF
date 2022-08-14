@@ -8,9 +8,9 @@
         xmlns:ViewModels="clr-namespace:BudgetPlanner_WPF.ViewModels"
         d:DataContext="{d:DesignInstance Type=ViewModels:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" FontSize="14">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid>
+        <Grid MaxWidth="600" Margin="20 10">
             <Grid.Resources>
                 <DataTemplate DataType="{x:Type ViewModels:AddOperationViewModel}">
                     <Views:AddOperationView />

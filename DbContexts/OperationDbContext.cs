@@ -12,6 +12,7 @@ namespace BudgetPlanner_WPF.DbContexts
     {
         public OperationDbContext(DbContextOptions options) : base(options)
         {
+
         }
 
         public OperationDbContext() => Database.EnsureCreated();

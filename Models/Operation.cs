@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,21 +11,29 @@ namespace BudgetPlanner_WPF.Models
     {
         public enum OperationTypes
         {
+            [Display(Name = "Доход")]
             Income,
+            [Display(Name = "Расход")]
             Expense
         }
 
         public enum IncomeCategories
         {
+            [Display(Name = "Зарплата")]
             Salary,
+            [Display(Name = "Возврат долга")]
             Debt_repayment,
+            [Display(Name = "Дивиденды")]
             Dividends
         }
 
         public enum ExpenseCategories
         {
+            [Display(Name = "Развлечение")]
             Entertainment,
+            [Display(Name = "Еда")]
             Food,
+            [Display(Name = "Транспорт")]
             Transport
         }
 
