@@ -17,13 +17,5 @@ namespace BudgetPlanner_WPF.ViewModels
 
         public OperationViewModel() { }
 
-
-        public OperationViewModel(string operationType, int sum, string category, string comment)
-        {
-            OperationType = operationType;
-            Sum = sum;
-            Category = category;
-            Comment = comment;
-        }
     }
 }

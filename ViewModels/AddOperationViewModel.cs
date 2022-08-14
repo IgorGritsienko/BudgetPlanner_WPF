@@ -115,10 +115,11 @@ namespace BudgetPlanner_WPF.ViewModels
                       DisplayName.enum_dict.TryGetValue(SelectedItem, out string opTypeString);
                       Enum.TryParse(opTypeString, out OperationTypes opType);
                       Operation operation;
-
                       if (opType is OperationTypes.Income)
                       {
-                          Enum.TryParse(SelectedCategory, out IncomeCategories income);
+                          DisplayName.enum_dict.TryGetValue(SelectedCategory, out string income_str);
+                          Enum.TryParse(income_str, out IncomeCategories income);
+
                           operation = new Operation()
                           {
                               OperationType = opType,
@@ -129,7 +130,9 @@ namespace BudgetPlanner_WPF.ViewModels
                       }
                       else
                       {
-                          Enum.TryParse(SelectedCategory, out ExpenseCategories expense);
+                          DisplayName.enum_dict.TryGetValue(SelectedItem, out string expense_str);
+                          Enum.TryParse(expense_str, out ExpenseCategories expense);
+
                           operation = new Operation()
                           {
                               OperationType = opType,
@@ -140,6 +143,7 @@ namespace BudgetPlanner_WPF.ViewModels
 
                       }
                       _planner.AddOperation(operation);
+                      MessageBox.Show("Операция зафиксирована.", "Успешно.", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                   },
                   (obj) => Sum > 0 && SelectedCategory != null));
             }

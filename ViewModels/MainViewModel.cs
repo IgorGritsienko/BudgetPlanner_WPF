@@ -1,6 +1,5 @@
 ﻿using BudgetPlanner_WPF.Commands;
 using BudgetPlanner_WPF.Models;
-using Microsoft.Expression.Interactivity.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

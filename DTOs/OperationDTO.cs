@@ -10,7 +10,6 @@ namespace BudgetPlanner_WPF.DTOs
 {
     public class OperationDTO
     {
-
         [Key]
         public Guid Id { get; set; }
         public string OperationType { get; set; }

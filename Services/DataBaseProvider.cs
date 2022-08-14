@@ -57,15 +57,13 @@ namespace BudgetPlanner_WPF.Services
 
         private static Operation ToOperation(OperationDTO operationDTO)
         {
-            Enum.TryParse(operationDTO.OperationType, out OperationTypes opType);
-            //if (!Enum.TryParse(operationDTO.OperationType, out OperationTypes opType))
-            //throw new InvalidCastException("Cannot convert string to enum OperationTypes.");
+            if (!Enum.TryParse(operationDTO.OperationType, out OperationTypes opType))
+                throw new InvalidCastException("Cannot convert string to enum OperationTypes.");
 
             if (opType is OperationTypes.Income)
             {
-                Enum.TryParse(operationDTO.Category, out IncomeCategories income);
-                //if (!Enum.TryParse(operationDTO.Category, out IncomeCategories income))
-                //throw new InvalidCastException("Cannot convert string to enum IncomeCategories.");
+                if (!Enum.TryParse(operationDTO.Category, out IncomeCategories income))
+                    throw new InvalidCastException("Cannot convert string to enum IncomeCategories.");
 
                 return new Operation
                 {
@@ -77,9 +75,8 @@ namespace BudgetPlanner_WPF.Services
             }
             else
             {
-                Enum.TryParse(operationDTO.Category, out ExpenseCategories expense);
-                //if (!Enum.TryParse(operationDTO.Category, out ExpenseCategories expense))
-                //throw new InvalidCastException("Cannot convert string to enum ExpenseCategories.");
+                if (!Enum.TryParse(operationDTO.Category, out ExpenseCategories expense))
+                    throw new InvalidCastException("Cannot convert string to enum ExpenseCategories.");
 
                 return new Operation
                 {
